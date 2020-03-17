@@ -1,0 +1,11 @@
+Nom_du_Module_ou_du_projet:
+  Sujet_1:
+    name: Pilotage Bras
+    description: Super sujet trop bien
+    url: url_du_sujet1.com
+
+  Sujet_2:
+    name: Navigation Autonome
+    description: Chouette sujet vraiment cool
+    url: url_du_sujet2.com
+
