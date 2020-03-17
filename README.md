@@ -1,10 +1,10 @@
 # Générateur de projets GitLab depuis une base d'élèves Moodle
 
-Voici l'arborescence de projet que l'on peut générer avec les scripts de ce dépot. Un groupe module (ici Projets_5ETI_Rob_1920), autant de sous-groupes de sujets qu'on de souhaite, des projets pour chacun de ces sujets :  
+Voici l'arborescence de projet que l'on peut générer avec les scripts de ce dépot. On observe ci-dessous: Un groupe module (ici Projets_5ETI_Rob_1920), autant de sous-groupes de sujets qu'on le souhaite, des projets pour chacun de ces sujets :  
 
 ![GitLab](img/GitLabScreenShot.png)
 
-Les dépots peuvent être privés. Le prof voit tout et les étudiants n'ont accès qu'à leur propore projet ! :)
+Les dépots peuvent être privés (par défaut). Le prof voit tout et les étudiants n'ont accès qu'à leur propre projet ! :)
 
 ## Prérequis 
 - python 3.6 ou + 
