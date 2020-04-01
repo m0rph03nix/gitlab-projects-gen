@@ -71,5 +71,19 @@ ou
 python createGitLabProjects.py fichier_team_genere.yaml fichier_sujets.yaml 
 ```
 
+ou  
+
+```bash
+python createGitLabProjects.py fichier_team_genere.yaml fichier_sujets.yaml --only-group-number
+```
+`--only-group-number` doit être en 3ème argument. Si on a qu'un sujet, ça évite d'écrire S1 en préfix de chaque projet. Le projet commencera donc par le préfix de groupe G1, G2, ..., Gn
+
+## Suivi d'activité des étudiants
+
+Pour vérifier les commits par étudiants, par groupe :
+```bash
+python checkStudentActivity.py fichier_team_genere.yaml fichier_sujets.yaml 
+```
+
 **Et voilà ! :)**
 

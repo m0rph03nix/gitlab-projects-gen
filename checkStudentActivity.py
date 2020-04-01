@@ -9,10 +9,10 @@ import re
 import sys
 import time
 
-class ProjectsGenerator:
+class CheckStudentActivity:
 
     """
-    Creates groups and projects on GitLab, thanks to teams and topics YAML files
+    Check student commits
     """    
 
     def __init__(self):
@@ -26,13 +26,13 @@ class ProjectsGenerator:
         if len(sys.argv) > 2:
             topics_filename = sys.argv[2]
         else:
-            topics_filename = 'topics.yaml'  
-               
+            topics_filename = 'topics.yaml'     
 
         if len(sys.argv) > 3:
             option = sys.argv[3]
         else:
             option = ''               
+
 
 
         # Get tocken to access gitlab account
@@ -91,18 +91,19 @@ class ProjectsGenerator:
                     # Set project name with this format : Sx_Gy_NAME1_NAME2_NAME..._NAMEn with s the topic number and y the team number
                     #print("\t" + team_item)
                     topic_idx = int(re.findall('\d+',topic_item)[0])
-
-                    if option != '--only-group-number':
-                        self.prj_name = "S" + re.findall('\d+',topic_item)[0]
-                        self.prj_name = self.prj_name + '_G' + re.findall('\d+',team_item)[0]
-                    else:
-                        self.prj_name = 'G' + re.findall('\d+',team_item)[0]
+                    #self.prj_name = "S" + re.findall('\d+',topic_item)[0]
+                    
+                    #if option != '--only-group-number':
+                    #    self.prj_name = "S" + re.findall('\d+',topic_item)[0]
+                    #    self.prj_name = self.prj_name + '_G' + re.findall('\d+',team_item)[0]
+                    #else:
+                    self.prj_name = 'G' + re.findall('\d+',team_item)[0]
 
                     for nom in self.team_content:
                         #print("\t\t" + nom[0])
                         self.prj_name = self.prj_name + '_' + nom[0]
 
-                    print(self.prj_name)                    
+                    print('\n', self.prj_name)                    
 
                     
                     group = self.gl.groups.get( self.group_id )
@@ -110,33 +111,29 @@ class ProjectsGenerator:
                     
                     sub_grp = self.gl.groups.list(search=self.topic_group_name[topic_idx-1])
 
-                    if len( sub_grp )==0 :
-                        sub_group_id = self.gl.groups.create({'name': self.topic_group_name[topic_idx-1], 'path': self.topic_group_name[topic_idx-1], 'parent_id' : self.group_id } ).id
-                    else:
-                        sub_group_id = sub_grp[0].id
 
-                    #print ("subgroup_id : ", sub_group_id  )
-
-                    #time.sleep(1)
+                    sub_group_id = sub_grp[0].id
 
                     projects = self.gl.projects.list(search=self.prj_name, namespace_id=sub_group_id)
 
-                    if len(projects)==0 :
-
-                        project = self.gl.projects.create({'name': self.prj_name, 'namespace_id': sub_group_id, 'description':  self.topic_description[topic_idx-1] } )
-
-                    else:
-                        project = projects[0]
+                    project = projects[0]
    
-                    
+                    commits = project.commits.list(since='2016-01-01')
+                    if len(commits) > 0:
+                        for commit in commits:
+                            title = commit.title
+                            author = commit.author_email
+                            print(author + " : " + title)
+                            
+                    """
                     for person in self.team_content:
                         ids = self.gl.users.list(search=person[2])
                         if len(ids) > 0:
                             member = project.members.create({'user_id': ids[0].id , 'access_level': gitlab.MAINTAINER_ACCESS})
-
+                    """
                    
 
 
 if __name__ == "__main__":
-    pg = ProjectsGenerator()
+    csa = CheckStudentActivity()
 
