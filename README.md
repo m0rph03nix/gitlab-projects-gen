@@ -35,7 +35,7 @@ Les dépots peuvent être privés (par défaut). Le prof voit tout et les étudi
 
 Regardez le fichier `topics.yaml` et modifiez le. Gardez au moins un sujet. Les clefs des sujets doivent garder le format `Sujet_1`, `Sujet_2`, ..., `Sujet_n`
 
-## Tester que les étudiants ont bien créer leur compte...
+## Tester que les étudiants ont bien créés leur compte...
 (si besoin, sourcez votre virtualenv)
 Dans le repertoire du projet :
 ```python
