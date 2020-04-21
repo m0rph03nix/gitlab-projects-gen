@@ -54,7 +54,8 @@ class checkUsers():
 
                 ids = self.gl.users.list(search=email)
                 if len(ids) > 0:
-                    names_done.append(firstname+" "+familyname  + "  -->  " + ids[0].name)
+                    #names_done.append(firstname+" "+familyname  + "  -->  " + ids[0].name + ' ==> ' + ids[0].username)
+                    names_done.append(firstname+" "+familyname  + ' \r\t\t\t ==> gitlab.com/' + ids[0].username)
 
                     #print( ids[0].name )
                     pass

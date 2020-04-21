@@ -117,13 +117,16 @@ class CheckStudentActivity:
                     projects = self.gl.projects.list(search=self.prj_name, namespace_id=sub_group_id)
 
                     project = projects[0]
+                    #print(project)
    
-                    commits = project.commits.list(since='2016-01-01')
+                    commits = project.commits.list(query_parameters={'all':'True','since': '2020-04-09T00:00:00+02:00Z'}) #since='2020-04-01 00:00:00+02:00', until='2020-04-02 18:30:00+02:00')
+                    #print(commits)
                     if len(commits) > 0:
-                        for commit in commits:
+                        for commit in reversed(commits):
+                            #print(commit)
                             title = commit.title
                             author = commit.author_email
-                            print(author + " : " + title)
+                            print(author + " : " + title )
                             
                     """
                     for person in self.team_content:
