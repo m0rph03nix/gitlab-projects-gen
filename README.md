@@ -9,7 +9,7 @@ Les dépots peuvent être privés (par défaut). Le prof voit tout et les étudi
 ## Prérequis 
 - python 3.6 ou + 
 - Clone du présent dépot
-- ```pip install requirements.txt``` (idéalement dans un virtualenv)
+- ```pip install -r requirements.txt``` (idéalement dans un virtualenv)
 - Compte gitlab 
   - Créez un tocken dans `Settings`-->`Access Tokens`    
   - Dans le dépot créez un fichier `token.yaml` contenant la clef `token_gitlab` associée à la valeur de votre clef. 

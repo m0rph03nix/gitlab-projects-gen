@@ -100,7 +100,7 @@ class ProjectsGenerator:
 
                     for nom in self.team_content:
                         #print("\t\t" + nom[0])
-                        self.prj_name = self.prj_name + '_' + nom[0]
+                        self.prj_name = self.prj_name + '_' + nom[0].replace('\xa0','')
 
                     print(self.prj_name)                    
 
@@ -122,7 +122,6 @@ class ProjectsGenerator:
                     projects = self.gl.projects.list(search=self.prj_name, namespace_id=sub_group_id)
 
                     if len(projects)==0 :
-
                         project = self.gl.projects.create({'name': self.prj_name, 'namespace_id': sub_group_id, 'description':  self.topic_description[topic_idx-1] } )
 
                     else:
