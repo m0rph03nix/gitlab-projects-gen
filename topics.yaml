@@ -1,11 +1,11 @@
-Nom_du_Module_ou_du_projet:
+SAT:
   Sujet_1:
-    name: Pilotage Bras
-    description: Super sujet trop bien
-    url: url_du_sujet1.com
+    name: TP SAT Groupe 1
+    description: TP SAT Groupe 1
+    url: https://gitlab.com/m0rph03nix/sadt_student/-/wikis/home
 
   Sujet_2:
-    name: Navigation Autonome
-    description: Chouette sujet vraiment cool
-    url: url_du_sujet2.com
+    name: TP SAT Groupe 2
+    description: TP SAT Groupe 1
+    url: https://gitlab.com/m0rph03nix/sadt_student/-/wikis/home
 

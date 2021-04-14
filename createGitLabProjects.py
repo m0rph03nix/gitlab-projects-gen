@@ -54,10 +54,19 @@ class ProjectsGenerator:
 
             grp = self.gl.groups.list(search=self.module_name)
             if len( grp )==0 :
+                print( self.module_name )
+                print( self.module_name )
                 self.group_id = self.gl.groups.create({'name': self.module_name, 'path': self.module_name}).id            
             else:
-                self.group_id = grp[0].id                
+                self.group_id = grp[0].id
 
+            for i in range(len( grp )):
+                print( "\n--GRP--" ) 
+                print( grp[i] ) 
+                print( grp[i].id )      
+        
+
+            #quit()
             #time.sleep(1)                
 
             topic_list = topics.keys()
@@ -107,13 +116,22 @@ class ProjectsGenerator:
                     
                     group = self.gl.groups.get( self.group_id )
                     subgroups = group.subgroups.list()
-                    
+
+
                     sub_grp = self.gl.groups.list(search=self.topic_group_name[topic_idx-1])
 
-                    if len( sub_grp )==0 :
+                    sgroup_exists = False
+                    sgroup_it = 0
+
+                    for i in range(len( sub_grp )):
+                        if( sub_grp[i].full_path == self.module_name.lower() + '/' + self.topic_group_name[topic_idx-1] ) :
+                            sgroup_exists = True
+                            sgroup_it = i
+
+                    if sgroup_exists == False :
                         sub_group_id = self.gl.groups.create({'name': self.topic_group_name[topic_idx-1], 'path': self.topic_group_name[topic_idx-1], 'parent_id' : self.group_id } ).id
                     else:
-                        sub_group_id = sub_grp[0].id
+                        sub_group_id = sub_grp[sgroup_it].id
 
                     #print ("subgroup_id : ", sub_group_id  )
 
