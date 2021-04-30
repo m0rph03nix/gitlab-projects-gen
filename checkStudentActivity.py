@@ -31,7 +31,17 @@ class CheckStudentActivity:
         if len(sys.argv) > 3:
             option = sys.argv[3]
         else:
-            option = ''               
+            option = ''   
+
+
+        early = 'T00:00:00+02:00Z'
+        late = 'T23:59:00+02:00Z'
+
+        # slot SAT IRC 2020
+        slots_official = ["2021-04-14", "2021-04-30" ]
+        slots = ["2021-04-14","2021-04-15","2021-04-16","2021-04-17","2021-04-18","2021-04-19","2021-04-20","2021-04-21","2021-04-22","2021-04-23","2021-04-24","2021-04-25","2021-04-26","2021-04-27","2021-04-28","2021-04-29","2021-04-30"]
+
+                            
 
 
 
@@ -103,7 +113,7 @@ class CheckStudentActivity:
                         #print("\t\t" + nom[0])
                         self.prj_name = self.prj_name + '_' + nom[0]
 
-                    print('\n', self.prj_name)                    
+                    print('\n# ', self.prj_name)                    
 
                     
                     group = self.gl.groups.get( self.group_id )
@@ -119,14 +129,55 @@ class CheckStudentActivity:
                     project = projects[0]
                     #print(project)
    
-                    commits = project.commits.list(query_parameters={'all':'True','since': '2020-04-09T00:00:00+02:00Z'}) #since='2020-04-01 00:00:00+02:00', until='2020-04-02 18:30:00+02:00')
-                    #print(commits)
-                    if len(commits) > 0:
-                        for commit in reversed(commits):
-                            #print(commit)
-                            title = commit.title
-                            author = commit.author_email
-                            print(author + " : " + title )
+
+
+
+
+
+
+
+
+                    for slot in slots:
+                        if slot in slots_official:
+                            print("### Commits the {0}".format(slot.replace('-',' ')))
+                        commits = project.commits.list(query_parameters={'all':'True','since': slot+early, 'until': slot+late })                        
+                        #commits = project.commits.list(all = True)  
+                        
+                      
+                        #print(commits)
+                        if len(commits) > 0:
+                            if slot not in slots_official:
+                                print("### Commits the {0} - during student free time :)".format(slot.replace('-',' ')))
+                            for commit in reversed(commits):
+                                #print(commit)
+                                title = commit.title
+                                author = commit.author_email
+                                print(author + " : " + title + "  " )
+                        #print("\n")
+                    
+                    print("### TAGS: ")
+                    tags = project.tags.list()
+                    for tag in tags:
+                        #print(project.http_url_to_repo)
+                        print("- {0} : [{1}]({2}/-/tree/{1} )  ".format(tag.commit['created_at'].replace('T',' ')[:-13], tag.name, project.http_url_to_repo.replace('.git','')))
+                        #print(tag.commit['created_at'])
+                        
+                        
+
+                    print("\n\n.   ")
+
+
+
+
+                           
+                    # commits = project.commits.list(query_parameters={'all':'True','since': '2020-04-09T00:00:00+02:00Z'}) #since='2020-04-01 00:00:00+02:00', until='2020-04-02 18:30:00+02:00')
+                    # #print(commits)
+                    # if len(commits) > 0:
+                    #     for commit in reversed(commits):
+                    #         #print(commit)
+                    #         title = commit.title
+                    #         author = commit.author_email
+                    #         print(author + " : " + title )
                             
                     """
                     for person in self.team_content:
