@@ -149,7 +149,10 @@ class ProjectsGenerator:
                     for person in self.team_content:
                         ids = self.gl.users.list(search=person[2])
                         if len(ids) > 0:
-                            member = project.members.create({'user_id': ids[0].id , 'access_level': gitlab.MAINTAINER_ACCESS})
+                            for ido in ids:
+                                if(ido.username == person[2]):
+                                    member = project.members.create({'user_id': ido.username , 'access_level': gitlab.MAINTAINER_ACCESS})
+                                    break
 
                    
 

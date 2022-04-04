@@ -1,11 +1,21 @@
-SAT:
+5IRC_PRJ_21-22:
   Sujet_1:
-    name: TP SAT Groupe 1
-    description: TP SAT Groupe 1
-    url: https://gitlab.com/m0rph03nix/sadt_student/-/wikis/home
+    name: Robot Geloc
+    description: Interation robot avec gelocatisation d objet indoor
+    url: https://github.com/cpe-majeure-robotique/S9-Project/blob/main/21-22/IRC.md
 
   Sujet_2:
-    name: TP SAT Groupe 2
-    description: TP SAT Groupe 1
-    url: https://gitlab.com/m0rph03nix/sadt_student/-/wikis/home
+    name: Domotique 1
+    description: Domotique 1
+    url: https://github.com/cpe-majeure-robotique/S9-Project/blob/main/21-22/IRC.md
+
+  Sujet_3:
+    name: Robot de suivi par langage des mains
+    description: Domotique 1
+    url: https://github.com/cpe-majeure-robotique/S9-Project/blob/main/21-22/IRC.md
+
+  Sujet_4:
+    name: Domotique 2
+    description: Domotique 2
+    url: https://github.com/cpe-majeure-robotique/S9-Project/blob/main/21-22/IRC.md
 

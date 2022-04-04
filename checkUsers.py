@@ -52,15 +52,22 @@ class checkUsers():
                 familyname  =   self.ws[ self.FAMILYNAME_COL + str(index+1)    ].value
                 email       =   self.ws[ self.EMAIL_COL      + str(index+1)    ].value
 
+                flag_user = 0
+
                 ids = self.gl.users.list(search=email)
                 if len(ids) > 0:
-                    #names_done.append(firstname+" "+familyname  + "  -->  " + ids[0].name + ' ==> ' + ids[0].username)
-                    names_done.append(firstname+" "+familyname  + ' \r\t\t\t ==> gitlab.com/' + ids[0].username)
+                    for ido in ids:
+                        if(ido.username == email):
+                            
+                            names_done.append(firstname+" "+familyname  + ' \r\t\t\t ==> gitlab.com/' + ido.username)
+                            flag_user = 1
+                            break
+                        
 
                     #print( ids[0].name )
                     pass
 
-                else:
+                if flag_user == 0 :
                     name = firstname+" "+familyname 
                     print(color + name + '\x1b[0;33;41m')
                     if color == '\x1b[0;30;41m':
