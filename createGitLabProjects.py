@@ -143,15 +143,31 @@ class ProjectsGenerator:
                         project = self.gl.projects.create({'name': self.prj_name, 'namespace_id': sub_group_id, 'description':  self.topic_description[topic_idx-1] } )
 
                     else:
-                        project = projects[0]
+                        prj_exist = False
+                        for project in projects:
+                            if project.name == self.prj_name:
+                                prj_exist = True
+                                break
+                        if prj_exist == False:
+                            project = self.gl.projects.create({'name': self.prj_name, 'namespace_id': sub_group_id, 'description':  self.topic_description[topic_idx-1] } )
    
-                    
+                    print( "project = {0}".format(project) )
+
                     for person in self.team_content:
                         ids = self.gl.users.list(search=person[2])
+                        
+                        print( "ids = {0}".format(ids) )
                         if len(ids) > 0:
                             for ido in ids:
+                                print( "ido.u = {0}".format(ido.username) )
                                 if(ido.username == person[2]):
-                                    member = project.members.create({'user_id': ido.username , 'access_level': gitlab.MAINTAINER_ACCESS})
+                                    print(person[2])
+                                    #mbrs = project.members.list()
+                                    #print( "mbrs = {0}".format(mbrs) )
+                                    #for mbr in mbrs:
+                                        #print( "mbr.u = {0}".format(mbr.username) )
+                                        #if mbr.username != person[2]:
+                                    member = project.members.create({'user_id': ido.id , 'access_level': gitlab.MAINTAINER_ACCESS})
                                     break
 
                    
